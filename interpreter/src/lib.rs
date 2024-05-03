@@ -161,8 +161,8 @@ impl C8 {
             (0x3, x, a, b) => self.skip_if(self.reg[x as usize] as u16 == (a, b).as_u16()),
             (0x4, x, a, b) => self.skip_if(self.reg[x as usize] as u16 != (a, b).as_u16()),
             (0x5, x, y, _) => self.skip_if(self.reg[x as usize] == self.reg[y as usize]),
-            (0x6, x, a, b) => self.set_register(x as usize, (a, b).as_u16()),
-            (0x7, x, a, b) => self.add_to_register(x as usize, (a, b).as_u16()),
+            (0x6, x, a, b) => self.set_reg(x as usize, (a, b).as_u16()),
+            (0x7, x, a, b) => self.add_to_reg(x as usize, (a, b).as_u16()),
             (0x8, x, y, 0) => self.assign(x as usize, y as usize),
             (0x8, x, y, 1) => self.or(x as usize, y as usize),
             (0x8, x, y, 2) => self.and(x as usize, y as usize),
@@ -213,11 +213,11 @@ impl C8 {
         self.pc = to;
     }
 
-    fn set_register(&mut self, x: usize, val: u16) {
+    fn set_reg(&mut self, x: usize, val: u16) {
         self.reg[x] = val as u8;
     }
 
-    fn add_to_register(&mut self, x: usize, val: u16) {
+    fn add_to_reg(&mut self, x: usize, val: u16) {
         self.reg[x] = self.reg[x].wrapping_add(val as u8);
     }
 
