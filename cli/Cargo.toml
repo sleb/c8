@@ -1,0 +1,16 @@
+[package]
+name = "cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "c8"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0"
+interpreter = { path = "../interpreter" }
+clap = { version = "4.5", features = ["cargo"] }
+env_logger = "0.11"
+log.workspace = true
+minifb = "0.25.0"
